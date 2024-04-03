@@ -7,7 +7,7 @@ clear all
 close all
 clc
 %**************************************************************************
-% First Stage - Read 640x480 car image and remove unnecessary objects
+% First Step - Read 640x480 car image and remove unnecessary objects
 %**************************************************************************
 img = imread('image02.jpg');
 BWC1 = imcrop(img,[0 200 640 240]);
@@ -15,7 +15,7 @@ img1=rgb2gray(img);
 img1=medfilt2(img1,[3 3]);      %Median filtering the image to remove noise
 threshold = graythresh(img1);
 BW = im2bw(img1,threshold);
-BWC2 = imcrop(BW,[0 200 640 240]);   %Plate Locate Assumption
+BWC2 = imcrop(BW,[0 200 640 240]);   %Plate Location Assumption
 BW1 = imclearborder(BWC2,8);
 BW2 = bwareaopen(BW1,1500,8);
 se = strel('rectangle',[10 100]);
@@ -29,7 +29,7 @@ if NUM==2
     BW5 = (L==2);
 end
 %**************************************************************************
-% Second Stage - Find license plate coordinates and crop it from the image
+% Second Step - Find license plate coordinates and crop it from the image
 %**************************************************************************
 L2 = bwlabel(BW5);
 STATS = regionprops(L2, 'Centroid');
@@ -40,7 +40,7 @@ plate_y = yc - 27;
 BW6 = imcrop(BW5,[plate_x plate_y 230 55]);
 BW7 = imcrop(BWC1,[plate_x plate_y 230 55]);
 %**************************************************************************
-% Third Stage - Segment and extract each character from the license plate
+% Third Step - Segment and extract each character from the license plate
 %**************************************************************************
 plate=rgb2gray(BW7);
 plate=medfilt2(plate,[3 3]);    %Median filtering the image to remove noise
@@ -59,7 +59,7 @@ for i=1:NUM2
 end
 %Now we have all characters in characters{} array
 %**************************************************************************
-% Final Stage - Character Recognition (OCR)
+% Final Step - Character Recognition (OCR)
 % Diego Barragán Guerrero
 % diegokillemall@yahoo.com
 % Private Technical University of Loja (Ecuador)
