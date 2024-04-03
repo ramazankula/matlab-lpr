@@ -1,9 +1,6 @@
 %**************************************************************************
 % Author: RAMAZAN KULA
-% ID: 020303011 
-% EE421 Digital Image Processing Course Project
 % Project Name: License Plate Recognition (LPR Project)
-% Atýlým University Electrical & Electronics Engineering
 % E-Mail: ramazankula@gmail.com
 %**************************************************************************
 clear all
@@ -63,7 +60,7 @@ end
 %Now we have all characters in characters{} array
 %**************************************************************************
 % Final Stage - Character Recognition (OCR)
-% Diego Barragán Guerrero
+% Diego BarragÃ¡n Guerrero
 % diegokillemall@yahoo.com
 % Private Technical University of Loja (Ecuador)
 % http://www.matpic.com/MATLAB_OCR.html
